@@ -155,19 +155,17 @@ function CodingPreview() {
       </div>
       <div className="coding-layout">
         <div className="challenge-panel">
-          <span className="mini-label">CHALLENGE / LINKED LISTS</span>
-          <strong>Reverse a list</strong>
-          <span className="challenge-description">Return the list in reverse order.</span>
-          <span className="challenge-tag">EASY · 20 PTS</span>
+          <span className="mini-label">CODING CHALLENGE</span>
+          <strong>Challenge prompt</strong>
+          <span className="challenge-description">Write and submit a solution in the battle room.</span>
+          <span className="challenge-tag">NO CODE EXECUTION</span>
         </div>
         <div className="code-panel">
           <div className="code-panel-heading"><span>solution.js</span><i /></div>
-          <div className="code-line"><b>01</b><span>function reverseList(head) {"{"}</span></div>
-          <div className="code-line"><b>02</b><span className="code-indent">let prev = null;</span></div>
-          <div className="code-line"><b>03</b><span className="code-indent">while (head) {"{"}</span></div>
-          <div className="code-line"><b>04</b><span className="code-indent code-indent-deep">const next = head.next;</span></div>
-          <div className="code-line"><b>05</b><span className="code-indent">{"}"}</span></div>
-          <div className="code-line"><b>06</b><span>{"}"}</span></div>
+          <div className="code-line"><b>01</b><span>function solve(input) {"{"}</span></div>
+          <div className="code-line"><b>02</b><span className="code-indent">const result = null;</span></div>
+          <div className="code-line"><b>03</b><span className="code-indent">return result;</span></div>
+          <div className="code-line"><b>04</b><span>{"}"}</span></div>
         </div>
         <div className="opponent-panel">
           <span className="mini-label">MATCH</span>

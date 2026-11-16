@@ -3,7 +3,7 @@ export const profile = {
   role: "Full Stack Developer",
   location: "India",
   photo: "/images/profile.jpg",
-  email: "",
+  email: "riteshmh.rm@gmail.com",
   social: {
     github: "https://github.com/rit3sh19",
     linkedin: "https://www.linkedin.com/in/ritesh-m-h-4522452b6",

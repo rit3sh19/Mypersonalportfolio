@@ -153,6 +153,7 @@ export const projects: Project[] = [
       "Tailwind CSS",
       "Zustand",
       "Axios",
+      "WebSocket API (live path; demo is simulated)",
       "Radix UI",
       "Lucide React",
       "Monaco Editor (separate component; battle route uses a textarea)",
