@@ -6,7 +6,6 @@ const statusLabels = {
   verified: "SOURCE REVIEWED",
   prototype: "PROTOTYPE",
   fork: "FORK / ATTRIBUTION NOTED",
-  unavailable: "SOURCE UNAVAILABLE",
 } as const;
 
 type Props = {
@@ -17,7 +16,7 @@ type Props = {
 export default function ProjectCard({ project, index }: Props) {
   return (
     <article
-      className={`showcase-project${index % 2 === 1 ? " showcase-project-reverse" : ""}${project.featured ? " showcase-project-featured" : ""}${project.status === "unavailable" ? " showcase-project-unavailable" : ""}`}
+      className={`showcase-project${index % 2 === 1 ? " showcase-project-reverse" : ""}${project.featured ? " showcase-project-featured" : ""}`}
     >
       <div className="showcase-visual">
         <div className="showcase-visual-index">
@@ -80,7 +79,7 @@ export default function ProjectCard({ project, index }: Props) {
         <div className="showcase-links">
           <a className="repository-link" href={project.repository} rel="noreferrer" target="_blank">
             <FiGithub aria-hidden="true" />
-            {project.status === "unavailable" ? "Check repository" : "View repository"}
+            View repository
             <FiArrowUpRight aria-hidden="true" />
           </a>
           {project.liveDemo && (

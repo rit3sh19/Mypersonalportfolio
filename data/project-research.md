@@ -9,10 +9,10 @@ Ranked for a portfolio that should reflect both demonstrable engineering and wha
 1. **Python Mini Project — Video Censorship Studio**: the clearest owner-held, end-to-end processing prototype, with an important distinction between the running UI's keyword matching and the separate classifier helper.
 2. **LastZENZONE — ZenZone**: broad Next.js prototype with a real Gemini chat endpoint and MongoDB community API. It is a fork; the fork-specific commits are modest and limited to sleep-aid hydration/state, dashboard presentation/logic, and metadata.
 3. **Excel Analytics Platform**: broad full-stack workflow (Excel uploads, user/admin routes, MongoDB, and Gemini summaries), but the repository is a fork with zero commits ahead of its source at the time checked. Do not present the upstream implementation as solely yours.
-4. **Blog Application**: a styled React interface prototype. Publishing and the post list are not connected to persistence or an API.
-5. **OnlyDevs**: excluded from technical ranking because the supplied repository URL returned GitHub 404 and no source could be verified.
+4. **OnlyDevs**: a substantial collaborative Next.js frontend with an owner-authored browser demo layer. It is worth showing for its demo adapter and breadth of UI, but must be described as a prototype; its backend, judging, AI, and remote-video claims are not verified in this source.
+5. **Blog Application**: a styled React interface prototype. Publishing and the post list are not connected to persistence or an API.
 
-This order weighs attribution and completeness as well as feature breadth. The portfolio still lists all five supplied projects, but the inaccessible item is explicitly marked unverified rather than given an invented description.
+This order weighs attribution and completeness as well as feature breadth. All five supplied repositories were investigated; no live deployment was verified.
 
 ## 1. Python Mini Project
 
@@ -85,14 +85,19 @@ This order weighs attribution and completeness as well as feature breadth. The p
 ## 5. OnlyDevs
 
 - **Repository:** [rit3sh19/onlydevs-frontend](https://github.com/rit3sh19/onlydevs-frontend)
-- **Inferred title / purpose:** Not established.
-- **Access result:** The supplied GitHub URL returned HTTP 404 during the audit. No README, tree, manifest, or source was accessible.
-- **Technologies, architecture, features, APIs, database:** Unverified; none are claimed.
-- **Likely contribution:** Unverified.
-- **Completeness and limitations:** Repository may be private, renamed, deleted, or otherwise unavailable; the 404 response alone does not distinguish these cases.
-- **Portfolio verdict:** Retain as a clearly marked, unverified entry because it is one of the five supplied sources, but do not showcase functionality until an accessible repository URL is provided.
-- **Portfolio description:** “Repository unavailable during review; implementation details and technology stack could not be verified.”
-- **Evidence level:** Only the inaccessible URL and HTTP 404 are verified. All project claims remain unverified.
+- **Inferred title:** OnlyDevs — a developer-community and coding-battle frontend prototype.
+- **What it does / problem:** Brings community connections, rooms, messages, help tickets, and coding-battle screens into one developer-oriented interface. The repository is a frontend client; the companion backend described in its docs is not included.
+- **Verified features:** App Router pages cover auth/callback, dashboard, connections, rooms, FAQ/help tickets, battle queue/room, and results. Demo mode is on unless `NEXT_PUBLIC_DEMO_MODE` is exactly `"false"`. In demo mode, the Axios adapter serves seeded users, rooms, battles, messages, connections, and FAQ-ticket data and persists state in browser `localStorage` (`onlydevs-demo-data-v2`). The demo WebSocket path simulates a timed match.
+- **Technologies:** Next.js 16.0.4, React 19.2, TypeScript, Tailwind CSS 3, Zustand, Axios, Radix UI primitives, Lucide React, and Monaco Editor in a separate code-editor component. The active battle-room route uses a textarea. `mediasoup-client` is declared but has no source import; it is not evidence of working remote video.
+- **Frontend architecture:** Next.js App Router with client-side route components, reusable UI/domain components, Zustand stores, and API service modules. Demo behavior is injected through an Axios adapter and a WebSocket simulation layer.
+- **Backend architecture:** No backend implementation or `app/api` handlers are present. Live mode expects REST and WebSocket services at the configured API URL (defaulting to localhost port 3001).
+- **Data/API integrations:** No database client or direct database integration is present. Demo state is stored in browser localStorage. The README documents a separate backend, but its implementation and database behavior were not inspected. A DiceBear URL is used for generated avatar images.
+- **Interesting implementation:** The demo adapter mimics API-shaped auth, room, connection, message, FAQ, and battle flows without a server; the socket layer emits a simulated matchmaking event. In the battle demo, any non-empty code submission is treated as a win, while result analysis/statistics are static. No code execution or AI judging occurs. FAQ help content is static and ticket-oriented, not an AI Q&A integration. Local camera preview uses `getUserMedia`, while the opponent view is a placeholder.
+- **Likely contribution:** Git history contains ten commits: the first eight are attributed to a collaborator, and two later commits are attributed to `rit3sh19`. The Jan 2026 change adds a local avatar-upload UI using `FileReader` and adjusts the FAQ compose layout. The Nov 2026 change adds/adapts the frontend demo mode across the app, including the mock API/state layer and setup documentation. Do not claim sole authorship of the complete platform.
+- **Completeness and limitations:** A broad, interactive frontend prototype with a backend-free demo path, not a complete full-stack service. Real OAuth/API/WebSocket behavior depends on an absent backend. Battle scoring, AI analysis, and remote video are not implemented in the inspected frontend. The current `npm run build` passed TypeScript compilation but failed during Next.js prerendering of `/auth/callback`, where `useSearchParams()` is used without a Suspense boundary. No working deployment was verified.
+- **Portfolio verdict:** Include as a collaborative prototype, highlighting the demo-mode infrastructure and accurately limiting claims about the underlying product. It ranks above the smaller blog UI, but below the top three projects in attribution and completeness.
+- **Portfolio description:** “I added a backend-free demo path to a collaborative Next.js developer-community prototype: an Axios adapter seeds persistent browser-side data, and a WebSocket shim simulates matchmaking. The UI covers connections, rooms, help tickets, and coding battles; live services and real code judging remain outside this frontend.”
+- **Evidence level:** Routes, source behavior, dependencies, and commit history were verified in the repository clone. README claims about backend integrations were not independently verified. Public visibility and a working deployment were not established; the source was accessible through Git transport.
 
 ## Deployment and claims policy
 

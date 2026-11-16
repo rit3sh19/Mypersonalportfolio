@@ -850,8 +850,8 @@ export default function App() {
               </h2>
             </div>
             <p className="section-heading-note">
-              Five projects, reviewed from source. Forks, prototypes, and unavailable code are labeled so the
-              work is presented with its real context.
+              Five projects, reviewed from source. Forks and prototypes are labeled so the work is presented
+              with its real context.
             </p>
           </div>
           <div className="project-list">

@@ -3,7 +3,7 @@ export type ProjectPreview =
   | "wellbeing"
   | "spreadsheet"
   | "blog"
-  | "unavailable";
+  | "coding";
 
 export type Project = {
   id: string;
@@ -21,7 +21,7 @@ export type Project = {
   repository: string;
   liveDemo: string | null;
   provenance: string;
-  status: "verified" | "prototype" | "fork" | "unavailable";
+  status: "verified" | "prototype" | "fork";
 };
 
 export const projects: Project[] = [
@@ -128,11 +128,47 @@ export const projects: Project[] = [
     status: "fork",
   },
   {
+    id: "onlydevs",
+    title: "OnlyDevs",
+    subtitle: "Developer community · Frontend prototype",
+    category: "Developer tools & community",
+    rank: 4,
+    featured: false,
+    preview: "coding",
+    summary:
+      "A collaborative Next.js frontend prototype for developer connections, rooms, help tickets, and coding battles, with a browser-local demo mode.",
+    problem:
+      "The product brings developer community workflows and coding-practice concepts into a single interface; the repository contains the frontend, not the companion backend.",
+    implementation:
+      "Next.js App Router pages use Zustand stores and Axios services. In its default demo mode, an Axios adapter simulates auth, community, FAQ, and battle endpoints and persists seeded state in localStorage; a WebSocket shim emits a timed mock match. Live mode expects an API and WebSocket server at the configured backend URL, but no backend source is included.",
+    highlights: [
+      "The demo adapter gives the UI API-shaped local flows for connections, messages, rooms, FAQ tickets, and battles.",
+      "Battle results are canned: any non-empty code submission is treated as a win; code execution, AI judging, and the displayed analysis are not implemented.",
+      "The FAQ content is static/help-ticket UI rather than an AI service. Local webcam preview exists, but remote video is a placeholder.",
+    ],
+    stack: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Zustand",
+      "Axios",
+      "Radix UI",
+      "Lucide React",
+      "Monaco Editor (separate component; battle route uses a textarea)",
+    ],
+    repository: "https://github.com/rit3sh19/onlydevs-frontend",
+    liveDemo: null,
+    provenance:
+      "Collaborative repository history: the initial implementation commits are attributed to a collaborator; two later commits are attributed to rit3sh19. Those changes add the frontend demo-mode infrastructure and settings/FAQ UI updates, not the entire platform.",
+    status: "prototype",
+  },
+  {
     id: "blog-interface",
     title: "Blog Application UI",
     subtitle: "Frontend · Product interface",
     category: "Frontend prototype",
-    rank: 4,
+    rank: 5,
     featured: false,
     preview: "blog",
     summary:
@@ -159,29 +195,5 @@ export const projects: Project[] = [
     provenance:
       "Non-fork repository under your account. The code is present, but the audit cannot independently establish individual authorship for every component.",
     status: "prototype",
-  },
-  {
-    id: "onlydevs",
-    title: "OnlyDevs",
-    subtitle: "Repository unavailable",
-    category: "Needs verification",
-    rank: null,
-    featured: false,
-    preview: "unavailable",
-    summary:
-      "The supplied repository URL returned GitHub 404 during review, so no project behavior or technology could be verified.",
-    problem:
-      "Unknown until the source repository is accessible.",
-    implementation:
-      "No README, source tree, dependency manifest, or application implementation was available to inspect.",
-    highlights: [
-      "No feature, architecture, or stack claims are made.",
-      "The 404 alone does not establish whether the repository is private, renamed, deleted, or otherwise unavailable.",
-    ],
-    stack: [],
-    repository: "https://github.com/rit3sh19/onlydevs-frontend",
-    liveDemo: null,
-    provenance: "Only the repository URL supplied in the brief could be checked.",
-    status: "unavailable",
   },
 ];

@@ -145,22 +145,38 @@ function BlogPreview() {
   );
 }
 
-function UnavailablePreview() {
+function CodingPreview() {
   return (
-    <div className="preview-window unavailable-preview">
+    <div className="preview-window coding-preview">
       <div className="preview-toolbar">
         <span className="window-dots"><i /><i /><i /></span>
-        <span>REPOSITORY CHECK</span>
-        <span className="toolbar-action">SOURCE</span>
+        <span>ONLYDEVS / BATTLE ROOM</span>
+        <span className="toolbar-action">DEMO</span>
       </div>
-      <div className="unavailable-content">
-        <span className="unavailable-code">404</span>
-        <span className="unavailable-title">Source not available</span>
-        <span className="unavailable-text">
-          No files inspected. No features inferred.
-        </span>
+      <div className="coding-layout">
+        <div className="challenge-panel">
+          <span className="mini-label">CHALLENGE / LINKED LISTS</span>
+          <strong>Reverse a list</strong>
+          <span className="challenge-description">Return the list in reverse order.</span>
+          <span className="challenge-tag">EASY · 20 PTS</span>
+        </div>
+        <div className="code-panel">
+          <div className="code-panel-heading"><span>solution.js</span><i /></div>
+          <div className="code-line"><b>01</b><span>function reverseList(head) {"{"}</span></div>
+          <div className="code-line"><b>02</b><span className="code-indent">let prev = null;</span></div>
+          <div className="code-line"><b>03</b><span className="code-indent">while (head) {"{"}</span></div>
+          <div className="code-line"><b>04</b><span className="code-indent code-indent-deep">const next = head.next;</span></div>
+          <div className="code-line"><b>05</b><span className="code-indent">{"}"}</span></div>
+          <div className="code-line"><b>06</b><span>{"}"}</span></div>
+        </div>
+        <div className="opponent-panel">
+          <span className="mini-label">MATCH</span>
+          <div className="opponent-avatar">A</div>
+          <strong>Opponent</strong>
+          <span className="match-status"><i /> MOCK MATCH</span>
+        </div>
       </div>
-      <span className="preview-caption">AUDIT STATUS</span>
+      <span className="preview-caption">ILLUSTRATIVE · MATCHMAKING IS SIMULATED</span>
     </div>
   );
 }
@@ -172,7 +188,7 @@ export default function ProjectPreview({ kind }: Props) {
       {kind === "wellbeing" && <WellbeingPreview />}
       {kind === "censoring" && <CensorshipPreview />}
       {kind === "blog" && <BlogPreview />}
-      {kind === "unavailable" && <UnavailablePreview />}
+      {kind === "coding" && <CodingPreview />}
     </div>
   );
 }
