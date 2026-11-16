@@ -1,104 +1,92 @@
+import { FiArrowUpRight, FiChevronDown, FiGitBranch, FiGithub } from "react-icons/fi";
 import type { Project } from "../../data/projects";
 import ProjectPreview from "./ProjectPreview";
 
 const statusLabels = {
-  verified: "Source reviewed",
-  prototype: "Prototype",
-  fork: "Fork · attribution noted",
-  unavailable: "Unverified source",
+  verified: "SOURCE REVIEWED",
+  prototype: "PROTOTYPE",
+  fork: "FORK / ATTRIBUTION NOTED",
+  unavailable: "SOURCE UNAVAILABLE",
 } as const;
 
 type Props = {
   project: Project;
+  index: number;
 };
 
-export default function ProjectCard({ project }: Props) {
+export default function ProjectCard({ project, index }: Props) {
   return (
     <article
-      className={`project-card${project.featured ? " project-card-featured" : ""}${project.status === "unavailable" ? " project-card-unavailable" : ""}`}
+      className={`showcase-project${index % 2 === 1 ? " showcase-project-reverse" : ""}${project.featured ? " showcase-project-featured" : ""}${project.status === "unavailable" ? " showcase-project-unavailable" : ""}`}
     >
-      <div className="project-card-top">
-        <div>
-          <p className="project-category">{project.category}</p>
-          <h3>{project.title}</h3>
-          <p className="project-subtitle">{project.subtitle}</p>
+      <div className="showcase-visual">
+        <div className="showcase-visual-index">
+          <span>PROJECT / {String(index + 1).padStart(2, "0")}</span>
+          <span className={`status-mark status-${project.status}`}><i /> {statusLabels[project.status]}</span>
         </div>
-        <span className={`status-pill status-${project.status}`}>
-          <span className="status-dot" />
-          {statusLabels[project.status]}
-        </span>
+        <ProjectPreview kind={project.preview} />
+        {project.rank && <span className="showcase-rank">CURATED / PRIORITY 0{project.rank}</span>}
       </div>
 
-      <ProjectPreview kind={project.preview} />
-
-      <div className="project-content">
+      <div className="showcase-content">
+        <div className="showcase-heading">
+          <div>
+            <p className="project-category">{project.category}</p>
+            <h3>{project.title}</h3>
+            <p className="project-subtitle">{project.subtitle}</p>
+          </div>
+          <span className="showcase-number">0{index + 1}</span>
+        </div>
         <p className="project-summary">{project.summary}</p>
-
-        <div className="problem-block">
+        <div className="showcase-problem">
           <span className="detail-label">THE PROBLEM</span>
           <p>{project.problem}</p>
         </div>
-
-        <div className="tag-list" aria-label="Technology stack">
-          {project.stack.length > 0 ? (
-            project.stack.map((technology) => (
-              <span className="tech-tag" key={technology}>
-                {technology}
-              </span>
-            ))
-          ) : (
-            <span className="tech-tag tech-tag-muted">Stack unverified</span>
-          )}
+        <div className="showcase-implementation">
+          <span className="detail-label">THE IMPLEMENTATION</span>
+          <p>{project.implementation}</p>
         </div>
 
-        <details className="project-details">
+        <div className="showcase-stack" aria-label="Identified technology stack">
+          <span className="detail-label">IDENTIFIED STACK</span>
+          <div className="tag-list">
+            {project.stack.length > 0 ? (
+              project.stack.map((technology) => (
+                <span className="tech-tag" key={technology}>{technology}</span>
+              ))
+            ) : (
+              <span className="tech-tag tech-tag-muted">Stack unverified</span>
+            )}
+          </div>
+        </div>
+
+        <details className="showcase-details">
           <summary>
-            <span>Implementation notes</span>
-            <span aria-hidden="true" className="details-toggle">
-              +
-            </span>
+            <span><FiGitBranch aria-hidden="true" /> Technical highlights & attribution</span>
+            <FiChevronDown aria-hidden="true" className="details-toggle" />
           </summary>
-          <div className="details-body">
-            <p>{project.implementation}</p>
+          <div className="showcase-details-body">
             <span className="detail-label">TECHNICAL HIGHLIGHTS</span>
             <ul>
-              {project.highlights.map((highlight) => (
-                <li key={highlight}>{highlight}</li>
-              ))}
+              {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
             </ul>
-            <div className="provenance-note">
+            <div className="showcase-provenance">
               <span className="detail-label">ATTRIBUTION & STATUS</span>
               <p>{project.provenance}</p>
             </div>
           </div>
         </details>
 
-        <div className="project-links">
-          <a
-            className="repository-link"
-            href={project.repository}
-            rel="noreferrer"
-            target="_blank"
-          >
-            {project.status === "unavailable"
-              ? "Check repository"
-              : "View repository"}
-            <span aria-hidden="true">↗</span>
+        <div className="showcase-links">
+          <a className="repository-link" href={project.repository} rel="noreferrer" target="_blank">
+            <FiGithub aria-hidden="true" />
+            {project.status === "unavailable" ? "Check repository" : "View repository"}
+            <FiArrowUpRight aria-hidden="true" />
           </a>
           {project.liveDemo && (
-            <a
-              className="demo-link"
-              href={project.liveDemo}
-              rel="noreferrer"
-              target="_blank"
-            >
-              Live demo <span aria-hidden="true">↗</span>
+            <a className="demo-link" href={project.liveDemo} rel="noreferrer" target="_blank">
+              Live demo <FiArrowUpRight aria-hidden="true" />
             </a>
-          )}
-          {project.rank && (
-            <span className="project-rank">
-              PORTFOLIO PRIORITY / 0{project.rank}
-            </span>
           )}
         </div>
       </div>
